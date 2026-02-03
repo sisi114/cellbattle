@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eukaryote vs Prokaryote</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .microscope-view { width: 300px; height: 300px; border-radius: 50%; border: 8px solid #334155; background: #000; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(0,255,200,0.2); transition: 0.5s; }
+        .cell-parts { position: absolute; transition: 0.5s; }
+        #nucleus { width: 80px; height: 80px; background: rgba(147, 51, 234, 0.6); border: 2px solid #a855f7; border-radius: 50%; }
+        .dna { width: 40px; height: 5px; background: #4ade80; border-radius: 10px; position: absolute; }
+        .controls { margin-top: 30px; display: flex; gap: 20px; }
+        button { padding: 15px 25px; font-size: 1.1rem; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        #eukBtn { background: #9333ea; color: white; }
+        #prokBtn { background: #10b981; color: white; }
+        .info-card { max-width: 600px; margin-top: 30px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; line-height: 1.6; }
+        .hidden { display: none; }
+        .organelle { width: 20px; height: 10px; background: #fbbf24; border-radius: 5px; position: absolute; }
+    </style>
+</head>
+<body>
+
+    <h1>Cellular Comparison Lab</h1>
+
+    <div class="microscope-view" id="view">
+        <div id="nucleus" class="cell-parts"></div>
+        <div class="dna" id="dna-strand" style="top: 140px; left: 130px;"></div>
+        <div class="organelle" style="top: 80px; left: 80px;"></div>
+        <div class="organelle" style="bottom: 80px; right: 80px;"></div>
+    </div>
+
+    <div class="controls">
+        <button id="eukBtn" onclick="showEukaryote()">Eukaryote</button>
+        <button id="prokBtn" onclick="showProkaryote()">Prokaryote</button>
+    </div>
+
+    <div class="info-card">
+        <h2 id="cell-title">Select a Cell Type</h2>
+        <p id="cell-desc">Click a button to see the internal structure under the microscope.</p>
+        <ul id="cell-list"></ul>
+    </div>
+
+<script>
+    function showEukaryote() {
+        document.getElementById('view').style.borderColor = "#9333ea";
+        document.getElementById('nucleus').classList.remove('hidden');
+        document.getElementById('dna-strand').style.top = "140px"; // DNA inside nucleus
+        document.getElementById('cell-title').innerText = "Eukaryotic Cell (Complex)";
+        document.getElementById('cell-desc').innerText = "Found in plants, animals, and fungi (like Sclerotinia!).";
+        document.getElementById('cell-list').innerHTML = "<li>Membrane-bound nucleus</li><li>Large (10-100 µm)</li><li>Has Mitochondria & organelles</li>";
+    }
+
+    function showProkaryote() {
+        document.getElementById('view').style.borderColor = "#10b981";
+        document.getElementById('nucleus').classList.add('hidden');
+        document.getElementById('dna-strand').style.top = "180px"; // DNA floats freely
+        document.getElementById('cell-title').innerText = "Prokaryotic Cell (Simple)";
+        document.getElementById('cell-desc').innerText = "Found in Bacteria and Archaea.";
+        document.getElementById('cell-list').innerHTML = "<li>No true nucleus (DNA floats)</li><li>Small (1-5 µm)</li><li>No membrane-bound organelles</li>";
+    }
+</script>
+
+</body>
+</html>
